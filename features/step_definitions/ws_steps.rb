@@ -6,12 +6,12 @@ When(/^I( try)? to create a secret$/) do |try|
       mime_type: 'text/plain',
       kind: 'test-secret'
     }
-    variable = JSON.parse(rest_resource('alice')['variables'].post(v).body)
+    variable = JSON.parse(rest_resource['variables'].post(v).body)
     e = {
       name: SecureRandom.uuid,
       variableid: variable['id']
     }
-    @response = rest_resource('alice')[environment_path]['variables'].post(e)
+    @response = rest_resource[environment_path]['variables'].post(e)
   rescue RestClient::Exception
     if try
       require 'ostruct'

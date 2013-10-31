@@ -1,0 +1,11 @@
+{
+  "env": "production",
+  "stack": "ci",
+  "account": "ci",
+  "api_keys": {
+    "ci:host:zfmbc0/alice": "zf7g97dgrgfs1aypfp6xhbr773037ewsw2dwb52vmns8m35n41yd",
+    "ci:host:zfmbc0/bob": "3wxra0216jxnnd31nekq21cpc39s38j581w21f8xte1x84np32y5wqgp",
+    "ci:host:zfmbc0/claire": "3wc66dy3gpzmzrdzptxr35pxepa24a1g0d24m8wfd3bv8tq526k4ev7"
+  },
+  "namespace": "zfmbc0"
+}

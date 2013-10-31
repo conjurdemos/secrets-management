@@ -10,7 +10,7 @@ Generate the permissions model. The output is redirected to config.yml, which us
 cucumber client testing code.
 
 ```bash
-conjur script:execute permissions-model.rb > config.yml
+conjur script:execute -c conjur.json permissions-model.rb
 ```
 
 Run the tests

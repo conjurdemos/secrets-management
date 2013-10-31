@@ -1,8 +1,9 @@
 require 'cucumber/rspec/doubles'
 require 'rspec'
+require 'conjur/api'
+require 'conjur/config'
 
-$config = YAML.load(File.read('config.yml'))
+puts JSON.parse(File.read('conjur.json')).symbolize_keys
 
-ENV['CONJUR_ENV'] = $config[:env]
-ENV['CONJUR_STACK'] = $config[:stack]
-ENV['CONJUR_ACCOUNT'] = $config[:account]
+Conjur::Config.merge JSON.parse(File.read('conjur.json'))
+Conjur::Config.apply
