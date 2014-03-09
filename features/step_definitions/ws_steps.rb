@@ -1,17 +1,9 @@
 require 'conjur/api'
 
-When(/^I( try)? to create a secret$/) do |try|
+When(/^I( try)? to update secret$/) do |try|
+  value = SecureRandom.uuid
   begin
-    v = {
-      mime_type: 'text/plain',
-      kind: 'test-secret'
-    }
-    variable = JSON.parse(rest_resource['variables'].post(v).body)
-    e = {
-      name: SecureRandom.uuid,
-      variableid: variable['id']
-    }
-    @response = rest_resource[environment_path]['variables'].post(e)
+    variable.add_value value
   rescue RestClient::Exception
     if try
       require 'ostruct'
@@ -35,17 +27,14 @@ Then /^it is denied$/ do
   @response.code.should == 403
 end
 
-Given(/^I am logged in as Alice$/) do
-  login_as 'alice'
+Given(/^I am logged in as user $/) do
+  login_as username(user, :user)
 end
 
-Given(/^I am logged in as Bob$/) do
-  login_as 'bob'
+Given(/^I am logged in as host $/) do
+  login_as username(host, :host)
 end
 
-Given(/^I am logged in as Claire$/) do
-  login_as 'claire'
-end
 
 Then(/^the response should be "(.*?)"$/) do |response|
   @response.body.should == response
